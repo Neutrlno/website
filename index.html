@@ -1,0 +1,22 @@
+<html>
+<head>Antares site!</head>
+<body>
+    <div></div>
+    <p>This is a binary tree construction and visualization tool!<br>
+        Enter tree parameters to visualize:
+    </p>
+
+    <label for="treeHeight">Enter tree height: </label>
+    <input type="number" id="treeHeight" name="treeHeight">
+
+    <label for="randomVal">Random value from 0 to: </label>
+    <input type="number" id="randomVal" name="randomVal"><br><br>
+
+    <input type="submit" id="submit" value="Generate a totally random tree">
+    <button id="sortedTreeButton">Generate sorted tree</button>
+    <button id="addNode" onclick="tree.fillRandom(1, randomValue.value), console.log('one node added')">Add 1 node sorted</button><br>
+    <!--  -->
+    <script src="visualization.js"></script>
+    <script src="../p5.js"></script>
+</body>
+</html>
