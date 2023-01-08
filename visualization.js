@@ -126,7 +126,7 @@ document.getElementById("addNode").onclick = () => {
 };
 
 function setup() {
-    const canvas = createCanvas(windowWidth-1, windowHeight-1);
+    const canvas = createCanvas(windowWidth-10, windowHeight-10);
     canvas.parent('sketch');
     canvas.style('width', '100%');
     canvas.style('height', '100%');
