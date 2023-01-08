@@ -10,7 +10,7 @@ class BinaryTree {
         this.root = null;
     };
     makeRandom(treeDepth, val, current = this.root) {
-        if (treeDepth > 0) {
+        if (treeDepth > 0 && val > 0) {
             current = new Node(this.randomValue(val));
             const left = this.randomValue(val);
             const right = this.randomValue(val);
@@ -21,7 +21,8 @@ class BinaryTree {
     };
     fillRandom(amount, val) {
         if (amount > 0 && val > 0) {
-            const num = this.randomValue(val);
+            let num = this.randomValue(val);
+            // num = 0;
             if (num > 0) this.insert(num);
             this.fillRandom(amount - 1, val);
         };
@@ -77,8 +78,8 @@ class BinaryTree {
         const dx = width / (2 ** lvl * 2);
         const k = 0.2 + lvl * 0.33;
         const dy = height * k / 2 ** lvl;
-        const size = height * k * 0.9 ** d / 2 ** lvl;
-        if (!curr || !(curr.data > 0)) {
+        const size = height * k * 0.95 ** d / (2 ** lvl);
+        if (!curr) {
             fill(220), rectMode(CENTER);
             rect(x, y - size * 0.05, size * 1.75, size);
             fill(200, 0, 0), textAlign(CENTER, CENTER), textSize(size);
@@ -89,7 +90,7 @@ class BinaryTree {
         line(x, y, x - dx, y + dy);
         fill(220), rectMode(CENTER);
         let len = curr.data.toString().length;
-        rect(x, y - size*0.1, size * len * 0.75 , size * 1.11);
+        rect(x, y - size * 0.1, size * len * 0.75, size * 1.11);
         textSize(size * 1.3), textAlign(CENTER, CENTER), fill(0, 150, 0);
         text(curr.data, x, y);
         this.draw(curr.left, lvl + 1, x - dx, y + dy, d);
@@ -101,7 +102,7 @@ const tree = new BinaryTree();
 
 const treeHeight = document.getElementById("treeHeight");
 const randomValue = document.getElementById("randomVal");
-treeHeight.defaultValue = 4;
+treeHeight.defaultValue = 7;
 randomValue.defaultValue = 100;
 tree.makeRandom(treeHeight.value, randomValue.value);
 console.log(tree);
@@ -112,16 +113,23 @@ function submit() {
     console.log('width ', tree.width());
 };
 
-document.getElementById("submit").onmouseup = submit;
+document.getElementById("submit").onclick = submit;
 
-document.getElementById("sortedTreeButton").onmouseup = () => {
+document.getElementById("sortedTreeButton").onclick = () => {
     tree.root = null;
     while (tree.depth() < treeHeight.value) tree.fillRandom(1, randomValue.value);
-    console.log(tree);
+};
+
+document.getElementById("addNode").onclick = () => {
+    tree.fillRandom(1, randomValue.value);
+    console.log('one node added');
 };
 
 function setup() {
-    createCanvas(displayWidth - 30, displayHeight - 30);
+    const canvas = createCanvas(windowWidth, windowHeight);
+    canvas.parent('sketch');
+    canvas.style('width', '99.99%');
+    canvas.style('height', '99.99%');
 };
 function draw() {
     background(200);
