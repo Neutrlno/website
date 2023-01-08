@@ -126,10 +126,10 @@ document.getElementById("addNode").onclick = () => {
 };
 
 function setup() {
-    const canvas = createCanvas(windowWidth, windowHeight);
+    const canvas = createCanvas(windowWidth-35, windowHeight);
     canvas.parent('sketch');
-    canvas.style('width', '99.99%');
-    canvas.style('height', '99.99%');
+    //canvas.style('width', '99.99%');
+    //canvas.style('height', '99.99%');
 };
 function draw() {
     background(200);
